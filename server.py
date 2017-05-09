@@ -17,9 +17,17 @@ def create_app(config):
     # == [ BLUEPRINT ] == #
     app.register_blueprint(sqeezer1_0, url_prefix="/v1/sqeezer")
 
-    @app.route('/')
+    @app.route('/', methods=['GET'])
     def index():
         return render_template('home.html')
+
+    @app.route('/lzw', methods=['GET'])
+    def lzw():
+        return render_template('lzw.html')
+
+    @app.route('/sqz', methods=['GET'])
+    def sqz():
+        return render_template('sqz.html')
 
     # == [ SECURITY ] == #
     # add auth decorator here

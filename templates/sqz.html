@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <p><h1>SQEEZER</h1></p>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/v1/sqeezer/sqz_compress_test">SQZ Compression Test</a></li>
+            <li><a href="/v1/sqeezer/sqz_compress_test_result">SQZ Compression Test Results</a></li>
+        </ul>
+
+        {% if data and data.error %}
+            <p>{{data.error}}</p>
+        {% endif %}
+
+        {% if data and data.result %}
+            <p>Finished: {{data.result.finished}}</p>
+            <p>File A: {{data.result.file_a_bytes}} Bytes or {{data.result.file_a}}</p>
+            <p>File B: {{data.result.file_b_bytes}} Bytes or {{data.result.file_b}}</p>
+        {% else %}
+            <p>Finished: n/a</p>
+            <p>File A: 0 Bytes</p>
+            <p>File B: 0 Bytes</p>
+        {% endif %}
+
+    </body>
+</html>
