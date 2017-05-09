@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, abort, make_response
+from flask import Blueprint, request, jsonify, abort, make_response, render_template
 import json
 import os
 
@@ -9,7 +9,7 @@ from src.resource import Sqeezer
 access_key = ProductionConfig.AWS_ACCESS_KEY_ID
 secret_key = ProductionConfig.AWS_SECRET_ACCESS_KEY
 
-methods = ['build_file']
+methods = ['compress_test_result', 'compress_test', 'compress_test_reset']
 
 _FILE = ['png', 'jpg', 'jpeg', 'gif', 'JPG', 'JPEG', 'mp4', 'MP4', 'pdf', 'PDF']
 _PATH = os.path.join(ProductionConfig.BASE_PATH, './tmp')
@@ -32,9 +32,9 @@ def get_sqeezer(meth):
     response = Sqeezer(params).sqeezer_action(str(meth))
 
     if response:
-        return make_response(jsonify(response), 200)
+        return render_template('tests.html', data=response)
     else:
-        return make_response(jsonify({'error': '404', 'message': 'No method found.'}), 404)
+        return render_template('tests.html', data={})
 
 
 # http://127.0.0.1:5000/v1/sqeezer/METHOD

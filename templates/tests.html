@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <p><h1>SQEEZER</h1></p>
+  <ul>
+    <li><a href="/v1/sqeezer/compress_test">LZW Compression Test</a></li>
+    <li><a href="/v1/sqeezer/compress_test_result">LZW Compression Test Results</a></li>
+    <li><a href="/v1/sqeezer/compress_test_reset">LZW Compression Test Reset</a></li>
+  </ul>
+  {% if data.error %}
+    <p>{{data.error}}</p>
+  {% endif %}
+
+  {% if data.result %}
+    <p>Finished: {{data.result.finished}}</p>
+    <p>File A: {{data.result.file_a_bytes}} Bytes or {{data.result.file_a}}</p>
+    <p>File B: {{data.result.file_b_bytes}} Bytes or {{data.result.file_b}}</p>
+  {% endif %}
+</body>
+</html>
