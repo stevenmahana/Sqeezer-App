@@ -3,12 +3,12 @@ import os
 
 class Config(object):
     BASE_PATH = os.path.abspath(os.path.dirname(__file__))  # Define the application directory
-    TEST_KEY = 'QQBx4jTpQK2CzadBK96hnqZXkfPxMvk4G7GM3kQvy'
+    TEST_KEY = ''
     AWS_ACCESS_KEY_ID = ''
     AWS_SECRET_ACCESS_KEY = ''
-    SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+    SECRET_KEY = ''
     REDIS_IP = ''
-    DATABASE = 'sqeezer'
+    DATABASE = ''
     DB_USER = ''
     DB_PASS = ''
     REDIS_PORT = 6379
