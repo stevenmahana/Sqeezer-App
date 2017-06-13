@@ -9,7 +9,7 @@ from src.resource import Sqeezer
 access_key = ProductionConfig.AWS_ACCESS_KEY_ID
 secret_key = ProductionConfig.AWS_SECRET_ACCESS_KEY
 
-actions = ['sqz_compress_test_result', 'sqz_compress_test', 'lzw_compress_test_result', 'lzw_compress_test']
+actions = ['sqz_compress_test_result', 'sqz_compress_test', 'lzw_compress_test_result', 'lzw_compress_test', 'test']
 
 _FILE = ['png', 'jpg', 'jpeg', 'gif', 'JPG', 'JPEG', 'mp4', 'MP4', 'pdf', 'PDF']
 _PATH = os.path.join(ProductionConfig.BASE_PATH, './tmp')

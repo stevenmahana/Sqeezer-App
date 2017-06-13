@@ -2,6 +2,8 @@ from flask import abort
 from config import ProductionConfig
 import multiprocessing
 # import memcache
+import threading
+import time
 import math
 import sys
 import lzw
@@ -186,6 +188,30 @@ class Sqeezer(object):
             ro['error'] = 'There was an error running your command. Contact Admin'
             return ro
 
+    # == [ TESTS ] == #
+    def test(self):
+        start_time = time.time()
+        tt()
+        tt()
+        tt()
+        tt()
+        print "Sequential run time: %.2f seconds" % (time.time() - start_time)
+
+        start_time = time.time()
+        t1 = threading.Thread(target=tt)
+        t2 = threading.Thread(target=tt)
+        t3 = threading.Thread(target=tt)
+        t4 = threading.Thread(target=tt)
+        t1.start()
+        t2.start()
+        t3.start()
+        t4.start()
+        t1.join()
+        t2.join()
+        t3.join()
+        t4.join()
+        print "Parallel run time: %.2f seconds" % (time.time() - start_time)
+
 
 # == [ UTILITY METHODS ] == #
 
@@ -205,12 +231,18 @@ def process_daemon():
 
 
 def convert_size(size_bytes):
-   if size_bytes == 0:
+    if size_bytes == 0:
        return "0B"
-   size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
-   i = int(math.floor(math.log(size_bytes, 1024)))
-   p = math.pow(1024, i)
-   s = round(size_bytes / p, 2)
-   return "%s %s" % (s, size_name[i])
+    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
+
+
+def tt():
+    with open('/dev/urandom') as f:
+        for x in xrange(100):
+            f.read(4 * 65535)
 
 
